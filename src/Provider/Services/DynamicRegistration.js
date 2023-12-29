@@ -133,14 +133,30 @@ class DynamicRegistration {
     provDynamicRegistrationDebug("Tool registration request:");
     provDynamicRegistrationDebug(registration);
     provDynamicRegistrationDebug("Sending Tool registration request");
-    const registrationResponse = await got
-      .post(configuration.registration_endpoint, {
-        json: registration,
-        headers: registrationToken
-          ? { Authorization: "Bearer " + registrationToken }
-          : undefined,
-      })
-      .json();
+    let registrationResponse;
+    try {
+      registrationResponse = await got
+        .post(configuration.registration_endpoint, {
+          json: registration,
+          headers: registrationToken
+            ? { Authorization: "Bearer " + registrationToken }
+            : undefined,
+        })
+        .json();
+    } catch (error) {
+      console.log(error);
+      let tokenMessage = "";
+      if (registrationToken) {
+        tokenMessage = " with token: " + registrationToken;
+      } else {
+        tokenMessage = " no token supplied ";
+      }
+      throw new Error(
+        `REMOTE_REGISTRATION_FAILED: ${error.message || error} from endpoint ${
+          configuration.registration_endpoint
+        }` + tokenMessage
+      );
+    }
 
     // Registering Platform
     const platformName =
