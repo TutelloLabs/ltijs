@@ -208,6 +208,9 @@ declare class Provider {
        * @param {String} platform.authConfig.method - Method of authorization "RSA_KEY" or "JWK_KEY" or "JWK_SET".
        * @param {String} platform.authConfig.key - Either the RSA public key provided by the platform, or the JWK key, or the JWK keyset address.
        * @param {string} [platform.authorizationServer] - Authorization server identifier to be used as the aud when requesting an access token. If not specified, the access token endpoint URL will be used.
+       * @param {Function} [getPlatform] - Function to get the platform details.
+       * @param {String} [ENCRYPTIONKEY] - Encryption key for securing data.
+       * @param {Object} [Database] - Database object for data manipulation.
        * @returns {Promise<Platform>}
        */
     registerPlatform(platform: {
@@ -221,7 +224,7 @@ declare class Provider {
             key: string;
         };
         authorizationServer?: string;
-    }, getPlatform: any, ENCRYPTIONKEY: any, Database: any): Promise<Platform>;
+    }, getPlatform?: Function, ENCRYPTIONKEY?: string, Database?: any): Promise<Platform>;
     /**
        * @description Gets a platform.
        * @param {String} url - Platform url.
