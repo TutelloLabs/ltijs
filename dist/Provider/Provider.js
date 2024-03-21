@@ -753,6 +753,11 @@ class Provider {
   /**
      * @description Sets the callback function called whenever there's a sucessfull lti 1.3 launch, exposing a "token" object containing the idtoken information.
      * @param {Function} _connectCallback - Callback function called everytime a platform sucessfully launches to the provider.
+     * @param {Object} [options] - Optional parameters for the onConnect method.
+     * @param {string} [options.sameSite] - Sets the SameSite attribute for cookies. Can be 'Strict', 'Lax', or 'None'.
+     * @param {boolean} [options.secure] - Sets the Secure attribute for cookies, requiring HTTPS.
+     * @param {Function} [options.sessionTimeout] - Callback function called when a session times out.
+     * @param {Function} [options.invalidToken] - Callback function called when an invalid token is received.
      * @example .onConnect((token, request, response)=>{response.send('OK')})
      * @returns {true}
      */
