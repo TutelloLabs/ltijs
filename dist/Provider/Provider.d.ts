@@ -5,44 +5,44 @@ export = _exports;
  */
 declare class Provider {
     /**
-       * @description Provider configuration method.
-       * @param {String} encryptionkey - Secret used to sign cookies and encrypt other info.
-       * @param {Object} database - Database configuration.
-       * @param {String} database.url - Database Url (Ex: mongodb://localhost/applicationdb).
-       * @param {Object} [database.plugin] - If set, must be the Database object of the desired database plugin.
-       * @param {Boolean} [database.debug] - If set to true, enables mongoose debug mode.
-       * @param {Object} [database.connection] - MongoDB database connection options (Ex: user, pass)
-       * @param {String} [database.connection.user] - Database user for authentication if needed.
-       * @param {String} [database.conenction.pass] - Database pass for authentication if needed.
-       * @param {Object} [options] - Lti Provider options.
-       * @param {String} [options.appRoute = '/'] - Lti Provider main route. If no option is set '/' is used.
-       * @param {String} [options.loginRoute = '/login'] - Lti Provider login route. If no option is set '/login' is used.
-       * @param {String} [options.keysetRoute = '/keys'] - Lti Provider public jwk keyset route. If no option is set '/keys' is used.
-       * @param {String} [options.dynRegRoute = '/register'] - Dynamic registration route.
-       * @param {Boolean} [options.https = false] - Set this as true in development if you are not using any web server to redirect to your tool (like Nginx) as https and are planning to configure ssl through Express.
-       * @param {Object} [options.ssl] - SSL certificate and key if https is enabled.
-       * @param {String} [options.ssl.key] - SSL key.
-       * @param {String} [options.ssl.cert] - SSL certificate.
-       * @param {String} [options.staticPath] - The path for the static files your application might serve (Ex: _dirname+"/public")
-       * @param {Boolean} [options.cors = true] - If set to false, disables cors.
-       * @param {Function} [options.serverAddon] - Allows the execution of a method inside of the server contructor. Can be used to register middlewares.
-       * @param {Object} [options.cookies] - Cookie configuration. Allows you to configure, sameSite and secure parameters.
-       * @param {Boolean} [options.cookies.secure = false] - Cookie secure parameter. If true, only allows cookies to be passed over https.
-       * @param {String} [options.cookies.sameSite = 'Lax'] - Cookie sameSite parameter. If cookies are going to be set across domains, set this parameter to 'None'.
-       * @param {String} [options.cookies.domain] - Cookie domain parameter. This parameter can be used to specify a domain so that the cookies set by Ltijs can be shared between subdomains.
-       * @param {Boolean} [options.devMode = false] - If true, does not require state and session cookies to be present (If present, they are still validated). This allows ltijs to work on development environments where cookies cannot be set. THIS SHOULD NOT BE USED IN A PRODUCTION ENVIRONMENT.
-       * @param {Number} [options.tokenMaxAge = 10] - Sets the idToken max age allowed in seconds. Defaults to 10 seconds. If false, disables max age validation.
-       * @param {Object} [options.dynReg] - Setup for the Dynamic Registration Service.
-       * @param {String} [options.dynReg.url] - Tool Provider main URL. (Ex: 'https://tool.example.com')
-       * @param {String} [options.dynReg.name] - Tool Provider name. (Ex: 'Tool Provider')
-       * @param {String} [options.dynReg.logo] - Tool Provider logo. (Ex: 'https://client.example.org/logo.png')
-       * @param {String} [options.dynReg.description] - Tool Provider description. (Ex: 'Tool description')
-       * @param {Array<String>} [options.dynReg.redirectUris] - Additional redirect URIs. (Ex: ['https://tool.example.com/launch'])
-       * @param {Object} [options.dynReg.customParameters] - Custom parameters object. (Ex: { key: 'value' })
-       * @param {Boolean} [options.dynReg.autoActivate = false] - Platform auto activation flag. If true, every Platform registered dynamically is immediately activated. Defaults to false.
-       */
+     * @description Provider configuration method.
+     * @param {String} encryptionkey - Secret used to sign cookies and encrypt other info.
+     * @param {Object} database - Database configuration.
+     * @param {String} [database.url] - Database Url (Ex: mongodb://localhost/applicationdb).
+     * @param {Object} [database.plugin] - If set, must be the Database object of the desired database plugin.
+     * @param {Boolean} [database.debug] - If set to true, enables mongoose debug mode.
+     * @param {Object} [database.connection] - MongoDB database connection options (Ex: user, pass)
+     * @param {String} [database.connection.user] - Database user for authentication if needed.
+     * @param {String} [database.conenction.pass] - Database pass for authentication if needed.
+     * @param {Object} [options] - Lti Provider options.
+     * @param {String} [options.appRoute = '/'] - Lti Provider main route. If no option is set '/' is used.
+     * @param {String} [options.loginRoute = '/login'] - Lti Provider login route. If no option is set '/login' is used.
+     * @param {String} [options.keysetRoute = '/keys'] - Lti Provider public jwk keyset route. If no option is set '/keys' is used.
+     * @param {String} [options.dynRegRoute = '/register'] - Dynamic registration route.
+     * @param {Boolean} [options.https = false] - Set this as true in development if you are not using any web server to redirect to your tool (like Nginx) as https and are planning to configure ssl through Express.
+     * @param {Object} [options.ssl] - SSL certificate and key if https is enabled.
+     * @param {String} [options.ssl.key] - SSL key.
+     * @param {String} [options.ssl.cert] - SSL certificate.
+     * @param {String} [options.staticPath] - The path for the static files your application might serve (Ex: _dirname+"/public")
+     * @param {Boolean} [options.cors = true] - If set to false, disables cors.
+     * @param {Function} [options.serverAddon] - Allows the execution of a method inside of the server contructor. Can be used to register middlewares.
+     * @param {Object} [options.cookies] - Cookie configuration. Allows you to configure, sameSite and secure parameters.
+     * @param {Boolean} [options.cookies.secure = false] - Cookie secure parameter. If true, only allows cookies to be passed over https.
+     * @param {String} [options.cookies.sameSite = 'Lax'] - Cookie sameSite parameter. If cookies are going to be set across domains, set this parameter to 'None'.
+     * @param {String} [options.cookies.domain] - Cookie domain parameter. This parameter can be used to specify a domain so that the cookies set by Ltijs can be shared between subdomains.
+     * @param {Boolean} [options.devMode = false] - If true, does not require state and session cookies to be present (If present, they are still validated). This allows ltijs to work on development environments where cookies cannot be set. THIS SHOULD NOT BE USED IN A PRODUCTION ENVIRONMENT.
+     * @param {Number} [options.tokenMaxAge = 10] - Sets the idToken max age allowed in seconds. Defaults to 10 seconds. If false, disables max age validation.
+     * @param {Object} [options.dynReg] - Setup for the Dynamic Registration Service.
+     * @param {String} [options.dynReg.url] - Tool Provider main URL. (Ex: 'https://tool.example.com')
+     * @param {String} [options.dynReg.name] - Tool Provider name. (Ex: 'Tool Provider')
+     * @param {String} [options.dynReg.logo] - Tool Provider logo. (Ex: 'https://client.example.org/logo.png')
+     * @param {String} [options.dynReg.description] - Tool Provider description. (Ex: 'Tool description')
+     * @param {Array<String>} [options.dynReg.redirectUris] - Additional redirect URIs. (Ex: ['https://tool.example.com/launch'])
+     * @param {Object} [options.dynReg.customParameters] - Custom parameters object. (Ex: { key: 'value' })
+     * @param {Boolean} [options.dynReg.autoActivate = false] - Platform auto activation flag. If true, every Platform registered dynamically is immediately activated. Defaults to false.
+     */
     setup(encryptionkey: string, database: {
-        url: string;
+        url?: string;
         plugin?: any;
         debug?: boolean;
         connection?: {
@@ -103,13 +103,13 @@ declare class Provider {
      */
     DynamicRegistration: DynamicRegistration;
     /**
-       * @description Starts listening to a given port for LTI requests and opens connection to the database.
-       * @param {Object} [options] - Deployment options.
-       * @param {Number} [options.port] - Deployment port. 3000 by default.
-       * @param {Boolean} [options.silent] - If true, disables initial startup message.
-       * @param {Boolean} [options.serverless] - If true, Ltijs does not start an Express server instance. This allows usage as a middleware and with services like AWS. Ignores 'port' parameter.
-       * @returns {Promise<true>}
-       */
+     * @description Starts listening to a given port for LTI requests and opens connection to the database.
+     * @param {Object} [options] - Deployment options.
+     * @param {Number} [options.port] - Deployment port. 3000 by default.
+     * @param {Boolean} [options.silent] - If true, disables initial startup message.
+     * @param {Boolean} [options.serverless] - If true, Ltijs does not start an Express server instance. This allows usage as a middleware and with services like AWS. Ignores 'port' parameter.
+     * @returns {Promise<true>}
+     */
     deploy(options?: {
         port?: number;
         silent?: boolean;
@@ -125,16 +125,16 @@ declare class Provider {
         silent?: boolean;
     }): Promise<true>;
     /**
-       * @description Sets the callback function called whenever there's a sucessfull lti 1.3 launch, exposing a "token" object containing the idtoken information.
-       * @param {Function} _connectCallback - Callback function called everytime a platform sucessfully launches to the provider.
-       * @param {Object} [options] - Optional parameters for the onConnect method.
-       * @param {string} [options.sameSite] - Sets the SameSite attribute for cookies. Can be 'Strict', 'Lax', or 'None'.
-       * @param {boolean} [options.secure] - Sets the Secure attribute for cookies, requiring HTTPS.
-       * @param {Function} [options.sessionTimeout] - Callback function called when a session times out.
-       * @param {Function} [options.invalidToken] - Callback function called when an invalid token is received.
-       * @example .onConnect((token, request, response)=>{response.send('OK')})
-       * @returns {true}
-       */
+     * @description Sets the callback function called whenever there's a sucessfull lti 1.3 launch, exposing a "token" object containing the idtoken information.
+     * @param {Function} _connectCallback - Callback function called everytime a platform sucessfully launches to the provider.
+     * @param {Object} [options] - Optional parameters for the onConnect method.
+     * @param {string} [options.sameSite] - Sets the SameSite attribute for cookies. Can be 'Strict', 'Lax', or 'None'.
+     * @param {boolean} [options.secure] - Sets the Secure attribute for cookies, requiring HTTPS.
+     * @param {Function} [options.sessionTimeout] - Callback function called when a session times out.
+     * @param {Function} [options.invalidToken] - Callback function called when an invalid token is received.
+     * @example .onConnect((token, request, response)=>{response.send('OK')})
+     * @returns {true}
+     */
     onConnect(_connectCallback: Function, options?: {
         sameSite?: string;
         secure?: boolean;
@@ -192,9 +192,9 @@ declare class Provider {
      */
     loginRoute(): string;
     /**
-       * @description Gets the keyset route that will be used to retrieve a public jwk keyset.
-       * @returns {String}
-       */
+     * @description Gets the keyset route that will be used to retrieve a public jwk keyset.
+     * @returns {String}
+     */
     keysetRoute(): string;
     /**
      * @description Gets the dynamic registration route that will be used to register platforms dynamically.
@@ -207,22 +207,22 @@ declare class Provider {
      */
     whitelist(...routes: string): any[];
     /**
-       * @description Registers a platform.
-       * @param {Object} platform
-       * @param {String} platform.url - Platform url.
-       * @param {String} platform.name - Platform nickname.
-       * @param {String} platform.clientId - Client Id generated by the platform.
-       * @param {String} platform.authenticationEndpoint - Authentication endpoint that the tool will use to authenticate within the platform.
-       * @param {String} platform.accesstokenEndpoint - Access token endpoint that the tool will use to get an access token for the platform.
-       * @param {object} platform.authConfig - Authentication method and key for verifying messages from the platform. {method: "RSA_KEY", key:"PUBLIC KEY..."}
-       * @param {String} platform.authConfig.method - Method of authorization "RSA_KEY" or "JWK_KEY" or "JWK_SET".
-       * @param {String} platform.authConfig.key - Either the RSA public key provided by the platform, or the JWK key, or the JWK keyset address.
-       * @param {string} [platform.authorizationServer] - Authorization server identifier to be used as the aud when requesting an access token. If not specified, the access token endpoint URL will be used.
-       * @param {Function} [getPlatform] - Function to get the platform details.
-       * @param {String} [ENCRYPTIONKEY] - Encryption key for securing data.
-       * @param {Object} [Database] - Database object for data manipulation.
-       * @returns {Promise<Platform>}
-       */
+     * @description Registers a platform.
+     * @param {Object} platform
+     * @param {String} platform.url - Platform url.
+     * @param {String} platform.name - Platform nickname.
+     * @param {String} platform.clientId - Client Id generated by the platform.
+     * @param {String} platform.authenticationEndpoint - Authentication endpoint that the tool will use to authenticate within the platform.
+     * @param {String} platform.accesstokenEndpoint - Access token endpoint that the tool will use to get an access token for the platform.
+     * @param {object} platform.authConfig - Authentication method and key for verifying messages from the platform. {method: "RSA_KEY", key:"PUBLIC KEY..."}
+     * @param {String} platform.authConfig.method - Method of authorization "RSA_KEY" or "JWK_KEY" or "JWK_SET".
+     * @param {String} platform.authConfig.key - Either the RSA public key provided by the platform, or the JWK key, or the JWK keyset address.
+     * @param {string} [platform.authorizationServer] - Authorization server identifier to be used as the aud when requesting an access token. If not specified, the access token endpoint URL will be used.
+     * @param {Function} [getPlatform] - Function to get the platform details.
+     * @param {String} [ENCRYPTIONKEY] - Encryption key for securing data.
+     * @param {Object} [Database] - Database object for data manipulation.
+     * @returns {Promise<Platform>}
+     */
     registerPlatform(platform: {
         url: string;
         name: string;
@@ -236,11 +236,11 @@ declare class Provider {
         authorizationServer?: string;
     }, getPlatform?: Function, ENCRYPTIONKEY?: string, Database?: any): Promise<Platform>;
     /**
-       * @description Gets a platform.
-       * @param {String} url - Platform url.
-       * @param {String} [clientId] - Tool clientId.
-       * @returns {Promise<Array<Platform>, Platform | false>}
-       */
+     * @description Gets a platform.
+     * @param {String} url - Platform url.
+     * @param {String} [clientId] - Tool clientId.
+     * @returns {Promise<Array<Platform>, Platform | false>}
+     */
     getPlatform(url: string, clientId?: string, ENCRYPTIONKEY: any, Database: any): Promise<Array<Platform>, Platform | false>;
     /**
      * @description Gets a platform by the platformId.
@@ -274,11 +274,11 @@ declare class Provider {
         };
     }): Promise<Array<Platform>, Platform | false>;
     /**
-       * @description Deletes a platform.
-       * @param {string} url - Platform url.
-       * @param {String} clientId - Tool clientId.
-       * @returns {Promise<true>}
-       */
+     * @description Deletes a platform.
+     * @param {string} url - Platform url.
+     * @param {String} clientId - Tool clientId.
+     * @returns {Promise<true>}
+     */
     deletePlatform(url: string, clientId: string): Promise<true>;
     /**
      * @description Deletes a platform by the platform Id.
@@ -287,9 +287,9 @@ declare class Provider {
      */
     deletePlatformById(platformId: string): Promise<true>;
     /**
-       * @description Gets all platforms.
-       * @returns {Promise<Array<Platform>>}
-       */
+     * @description Gets all platforms.
+     * @returns {Promise<Array<Platform>>}
+     */
     getAllPlatforms(): Promise<Array<Platform>>;
     /**
      * @description Redirects to a new location. Passes Ltik if present.
